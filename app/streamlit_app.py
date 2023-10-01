@@ -18,7 +18,7 @@ dp.data_cleaning(df)
 
 # Load Pickle model============================================================================================================================
 
-pickle_load = open('../model/classifier.pkl', 'rb')
+pickle_load = open('model/classifier.pkl', 'rb')
 classifier = pickle.load(pickle_load)
 
 # Function to ML Model Classifier
