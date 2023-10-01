@@ -71,7 +71,7 @@ with tab1:
     st.markdown("5 - Online Storage and Backup.")
     st.markdown(df.dtypes)
         
-    with st.expander('Dataset Information'):
+    with st.expander(df[(df['churn'] == status_churn)]):
         st.dataframe(df)
 
 with tab2:
