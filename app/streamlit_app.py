@@ -69,6 +69,7 @@ with tab1:
     st.markdown("3 - Movie, TV and Music Streaming Services.")
     st.markdown("4 - Device protection service.")
     st.markdown("5 - Online Storage and Backup.")
+    st.markdown(df.dtypes)
         
     with st.expander('Dataset Information'):
         st.dataframe(df)
