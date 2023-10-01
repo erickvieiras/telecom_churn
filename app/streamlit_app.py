@@ -10,8 +10,8 @@ import pickle
 
 # Page config and load data ===================================================================================================================
 st.set_page_config(layout="wide")
-df = pd.read_csv('../dataset/telecom_customer_churn.csv', low_memory = False)
-df_model = pd.read_csv('../model/customers_churn_preparated.csv', low_memory = False)
+df = pd.read_csv('../dataset/telecom_customer_churn.csv')
+df_model = pd.read_csv('../model/customers_churn_preparated.csv')
 
 # Data Cleaning================================================================================================================================
 dp.data_cleaning(df)
