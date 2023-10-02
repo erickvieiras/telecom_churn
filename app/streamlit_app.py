@@ -69,9 +69,9 @@ with tab1:
     st.markdown("3 - Movie, TV and Music Streaming Services.")
     st.markdown("4 - Device protection service.")
     st.markdown("5 - Online Storage and Backup.")
-    st.markdown(df.dtypes)
+    st.markdown(df[(df['churn'] == status_churn)])
         
-    with st.expander(df[(df['churn'] == status_churn)]):
+    with st.expander('Dataset Information'):
         st.dataframe(df)
 
 with tab2:
