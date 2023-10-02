@@ -86,7 +86,7 @@ with tab2:
     with c01:
         type_rate = st.selectbox('Select a billing metric:', ('Monthly Charge', 'Total Charge', 'Total Refunds', 'Total Revenue'))
     with c02:
-        operation = st.selectbox('Choose the operation to perform:', ('Avarage', 'Sum'))
+        operation = st.selectbox('Choose the operation to perform:', ('Sum', 'Avarage'))
 
     c1, c2 = st.columns(2)
     with c1:
