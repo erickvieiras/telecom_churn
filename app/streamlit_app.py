@@ -70,7 +70,7 @@ with tab1:
     st.markdown("4 - Device protection service.")
     st.markdown("5 - Online Storage and Backup.")
 
-    df = df[(df['churn'] == 0)]
+    df = df[(df['churn'] == 'Yes')]
     df = df[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
     st.dataframe(df)
         
