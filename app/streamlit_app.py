@@ -90,47 +90,48 @@ with tab2:
 
     c1, c2 = st.columns(2)
     with c1:
-        if type_rate == 'Monthly Charge':
-            if dependents == 'All':
-                rate_per_product = df[(df['churn'] == status_churn)]
-                m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Average monthly billing rate per internet product ')
-                st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
-                with st.expander('More Info'):
-                    st.dataframe(m_rate_per_product)
-            else:
-                rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
-                m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Average monthly billing rate per internet product ')
-                st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
-                with st.expander('More Info'):
-                    st.dataframe(m_rate_per_product)
+        if operation == 'Avarage':
+            if type_rate == 'Monthly Charge':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Average monthly billing rate per internet product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Average monthly billing rate per internet product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
 
-        elif type_rate == 'Total Charge':
-            if dependents == 'All':
-                rate_per_product = df[(df['churn'] == status_churn)]
-                m_rate_per_product = rate_per_product[['total_charges', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'internet_type', color = 'total_charges', text_auto = '.2s', title = 'Average total billing rate per internet product')
-                st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
-                with st.expander('More Info'):
-                    st.dataframe(m_rate_per_product)
-            else:
-                rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
-                m_rate_per_product = rate_per_product[['total_charges', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'internet_type', color = 'total_charges', text_auto = '.2s', title = 'Average total billing rate per internet product ')
-                st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
-                with st.expander('More Info'):
-                    st.dataframe(m_rate_per_product)
+            elif type_rate == 'Total Charge':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_charges', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'internet_type', color = 'total_charges', text_auto = '.2s', title = 'Average total billing rate per internet product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_charges', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'internet_type', color = 'total_charges', text_auto = '.2s', title = 'Average total billing rate per internet product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
 
-        elif type_rate == 'Total Refunds':
-            if dependents == 'All':
-                rate_per_product = df[(df['churn'] == status_churn)]
-                m_rate_per_product = rate_per_product[['total_refunds', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_refunds', x = 'internet_type', color = 'total_refunds', text_auto = '.2s', title = 'Average refund rate per internet product')
-                st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
-                with st.expander('More Info'):
-                    st.dataframe(m_rate_per_product)
-            else:
+            elif type_rate == 'Total Refunds':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_refunds', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_refunds', x = 'internet_type', color = 'total_refunds', text_auto = '.2s', title = 'Average refund rate per internet product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
                     rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
                     m_rate_per_product = rate_per_product[['total_refunds', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
                     fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_refunds', x = 'internet_type', color = 'total_refunds', text_auto = '.2s', title = 'Average refund rate per internet product')
@@ -138,24 +139,90 @@ with tab2:
                     with st.expander('More Info'):
                         st.dataframe(m_rate_per_product)
 
-        else:
-            if dependents == 'All':
-                rate_per_product = df[(df['churn'] == status_churn)]
-                m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'internet_type', color = 'total_revenue', text_auto = '.2s', title = 'Average Revenue Rate by Internet Product ')
-                st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
-                with st.expander('More Info'):
-                    st.dataframe(m_rate_per_product)
             else:
-                rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
-                m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'internet_type', color = 'total_revenue', text_auto = '.2s', title = 'Average Revenue Rate by Internet Product')
-                st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
-                with st.expander('More Info'):
-                    st.dataframe(m_rate_per_product)
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'internet_type', color = 'total_revenue', text_auto = '.2s', title = 'Average Revenue Rate by Internet Product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'internet_type', color = 'total_revenue', text_auto = '.2s', title = 'Average Revenue Rate by Internet Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+        else:
+            if type_rate == 'Monthly Charge':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Total monthly billing rate per internet product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Total monthly billing rate per internet product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+
+            elif type_rate == 'Total Charge':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_charges', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'internet_type', color = 'total_charges', text_auto = '.2s', title = 'Total total billing rate per internet product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_charges', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'internet_type', color = 'total_charges', text_auto = '.2s', title = 'Total total billing rate per internet product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+
+            elif type_rate == 'Total Refunds':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_refunds', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_refunds', x = 'internet_type', color = 'total_refunds', text_auto = '.2s', title = 'Total refund rate per internet product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_refunds', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_refunds', x = 'internet_type', color = 'total_refunds', text_auto = '.2s', title = 'Total refund rate per internet product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+
+            else:
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'internet_type', color = 'total_revenue', text_auto = '.2s', title = 'Total Revenue Rate by Internet Product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'internet_type', color = 'total_revenue', text_auto = '.2s', title = 'Total Revenue Rate by Internet Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+
 
 
     with c2:
+        if operation == 'Avarage':
             if type_rate == 'Monthly Charge':
                 if dependents == 'All':
                     rate_per_customer_type = df[(df['churn'] == status_churn)]
@@ -219,8 +286,70 @@ with tab2:
                     st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
                     with st.expander('More Info'):
                         st.dataframe(m_rate_per_product)
+        else:
+            if type_rate == 'Monthly Charge':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total monthly billing rate per Customer Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total monthly billing rate per Customer Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
 
+            elif type_rate == 'Total Charge':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_charges', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total total billing rate per Customer Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_charges', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_charges', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total total billing rate per Customer Product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
 
+            elif type_rate == 'Total Refunds':
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_refunds', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_refunds', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total refund rate per Customer Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_refunds', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_refunds', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total refund rate per Customer Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+
+            else:
+                if dependents == 'All':
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total Revenue Rate by Customer Product ')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
+                else:
+                    rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
+                    m_rate_per_product = rate_per_product[['total_revenue', 'churn', 'customer_type']].groupby(['customer_type']).sum().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'total_revenue', x = 'customer_type', color = 'customer_type', text_auto = '.2s', title = 'Total Revenue Rate by Customer Product')
+                    st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
+                    with st.expander('More Info'):
+                        st.dataframe(m_rate_per_product)
 
     c3, c4, c5 = st.columns(3)
     with c3:
