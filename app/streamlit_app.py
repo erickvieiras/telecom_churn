@@ -69,10 +69,11 @@ with tab1:
     st.markdown("3 - Movie, TV and Music Streaming Services.")
     st.markdown("4 - Device protection service.")
     st.markdown("5 - Online Storage and Backup.")
-    st.markdown(df.dtypes)
-    teste = df[(df['churn'] == 'Yes')]
-    teste = teste[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-    st.dataframe(teste)
+    st.markdown(df['churn'].dtypes)
+    df_teste = df.copy()
+    #teste = df[(df['churn'] == 'Yes')]
+    #teste = teste[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+    st.dataframe(df_teste)
         
     with st.expander('Dataset Information'):
         st.dataframe(df)
