@@ -573,7 +573,7 @@ with tab4:
                 st.plotly_chart(mapa, use_container_width=True)
 
     with column2:
-        cities_churn = df[df['churn'] == 'Yes']
+        cities_churn = df[df['churn'] == status_churn]
         df_cities_churn = cities_churn.loc[:,['city', 'churn']].groupby(['city']).count().sort_values(['churn'], ascending = False).reset_index().head(5)
         figure_cities = px.bar(df_cities_churn, x = 'city', y = 'churn', color = 'city', text_auto = '.2s', title = 'Top 5 cities with the highest Churn Rate')
         st.plotly_chart(figure_cities, use_container_width= True)
