@@ -93,12 +93,12 @@ with tab2:
         if operation == 'Avarage':
             if type_rate == 'Monthly Charge':
                 if dependents == 'All':
-                    df = df[(df['churn'] == status_churn)]
-                    df = df[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-                    fig_m_rate_per_product = px.bar(df, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Average monthly billing rate per internet product ')
+                    rate_per_product = df[(df['churn'] == status_churn)]
+                    m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+                    fig_m_rate_per_product = px.bar(m_rate_per_product, y = 'monthly_charge', x = 'internet_type', color = 'monthly_charge', text_auto = '.2s', title = 'Average monthly billing rate per internet product ')
                     st.plotly_chart(fig_m_rate_per_product, use_container_width = True)
                     with st.expander('More Info'):
-                        st.dataframe(df)
+                        st.dataframe(m_rate_per_product)
                 else:
                     rate_per_product = df[(df['churn'] == status_churn) & (df['dependents'] == dependents)]
                     m_rate_per_product = rate_per_product[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
