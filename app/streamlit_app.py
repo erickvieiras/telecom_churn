@@ -72,7 +72,7 @@ with tab1:
     st.markdown(df['churn'].dtypes)
     df_teste = df.copy()
     #teste = df[(df['churn'] == 'Yes')]
-    #teste = teste[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
+    df_teste = df_teste[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
     st.dataframe(df_teste)
         
     with st.expander('Dataset Information'):
