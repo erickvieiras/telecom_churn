@@ -72,9 +72,9 @@ with tab1:
     st.markdown(df['churn'].dtypes)
     df_teste = df.copy()
     df_teste = df[(df['churn'] == 'Yes')]
-    df_teste['monthly_charge'] = pd.to_numeric(df_teste['monthly_charge'], errors='coerce')
-    df_teste = df_teste[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).mean().reset_index()
-    st.dataframe(df_teste)
+    df_teste['monthly_charge'] = df_teste['monthly_charge'].astype(float)
+    df_mean = df_teste[['monthly_charge', 'internet_type']].groupby('internet_type').agg({'monthly_charge': 'mean'}).reset_index()
+    st.dataframe(df_mean)
         
     with st.expander('Dataset Information'):
         st.dataframe(df)
