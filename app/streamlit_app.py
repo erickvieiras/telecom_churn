@@ -71,8 +71,6 @@ with tab1:
     st.markdown("5 - Online Storage and Backup.")
     st.markdown(df['churn'].dtypes)
     df_teste = df.copy()
-    df_teste['churn'] = df_teste['churn'].apply(lambda x: 1 if x == 'Yes' else 1)
-    df_teste['churn'] = df_teste['churn'].astype(np.int64)
     df_teste = df[(df['churn'] == 1)]
     df_teste = df_teste[['monthly_charge', 'churn', 'internet_type']].groupby(['internet_type']).sum().reset_index()
     st.dataframe(df_teste)
