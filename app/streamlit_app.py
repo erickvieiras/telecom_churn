@@ -493,82 +493,90 @@ with tab4:
     with cols2:
         churn = st.selectbox('Select a status:', ['All', 'Churned', 'Not Churned'])
 
-    if len(product) > 0:
-        df_cities1 = df[df['internet_type'].isin(product)]
-        if churn == 'Churned':
-            df_cities2 = df_cities1[df_cities1['churn'] == 'Yes']
-            df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
-            df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
-            df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+    column1, column2 = st.columns(2)
+    with column1:
+        if len(product) > 0:
+            df_cities1 = df[df['internet_type'].isin(product)]
+            if churn == 'Churned':
+                df_cities2 = df_cities1[df_cities1['churn'] == 'Yes']
+                df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
+                df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
+                df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
 
-            mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
+                mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
 
-            mapa.update_layout(mapbox_style='open-street-map')
-            mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
+                mapa.update_layout(mapbox_style='open-street-map')
+                mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
 
-            st.plotly_chart(mapa, use_container_width=True)
+                st.plotly_chart(mapa, use_container_width=True)
 
-        elif churn == 'Not Churned':
-            df_cities2 = df_cities1[df_cities1['churn'] == 'No']
-            df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
-            df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
-            df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+            elif churn == 'Not Churned':
+                df_cities2 = df_cities1[df_cities1['churn'] == 'No']
+                df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
+                df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
+                df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
 
-            mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
+                mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
 
-            mapa.update_layout(mapbox_style='open-street-map')
-            mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
+                mapa.update_layout(mapbox_style='open-street-map')
+                mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
 
-            st.plotly_chart(mapa, use_container_width=True)
+                st.plotly_chart(mapa, use_container_width=True)
+            else:
+                df_map = df_cities1[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
+                df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
+                df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+
+                mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
+
+                mapa.update_layout(mapbox_style='open-street-map')
+                mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
+
+                st.plotly_chart(mapa, use_container_width=True)
+
         else:
-            df_map = df_cities1[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
-            df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
-            df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+            if churn == 'Churned':
+                df_cities2 = df[df['churn'] == 'Yes']
+                df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
+                df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
+                df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
 
-            mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
+                mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
 
-            mapa.update_layout(mapbox_style='open-street-map')
-            mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
+                mapa.update_layout(mapbox_style='open-street-map')
+                mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
 
-            st.plotly_chart(mapa, use_container_width=True)
+                st.plotly_chart(mapa, use_container_width=True)
 
-    else:
-        if churn == 'Churned':
-            df_cities2 = df[df['churn'] == 'Yes']
-            df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
-            df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
-            df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+            elif churn == 'Not Churned':
+                df_cities2 = df[df['churn'] == 'No']
+                df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
+                df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
+                df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
 
-            mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
+                mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
 
-            mapa.update_layout(mapbox_style='open-street-map')
-            mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
+                mapa.update_layout(mapbox_style='open-street-map')
+                mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
 
-            st.plotly_chart(mapa, use_container_width=True)
+                st.plotly_chart(mapa, use_container_width=True)
+            else:
+                df_map = df[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
+                df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
+                df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
 
-        elif churn == 'Not Churned':
-            df_cities2 = df[df['churn'] == 'No']
-            df_map = df_cities2[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
-            df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
-            df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+                mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
 
-            mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
+                mapa.update_layout(mapbox_style='open-street-map')
+                mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
 
-            mapa.update_layout(mapbox_style='open-street-map')
-            mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
+                st.plotly_chart(mapa, use_container_width=True)
 
-            st.plotly_chart(mapa, use_container_width=True)
-        else:
-            df_map = df[['churn', 'latitude', 'longitude', 'city', 'internet_type']]
-            df_map['point_size'] = df_map['churn'].apply(lambda x: 1 if x == 'No' else 4)
-            df_map = df_map.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
-
-            mapa = px.scatter_mapbox(df_map, lat='lat', hover_name ='city', hover_data= ['churn', 'internet_type'] , lon='lon', size = 'point_size', zoom=5, color_discrete_sequence=['#0598ad'], height=600)
-
-            mapa.update_layout(mapbox_style='open-street-map')
-            mapa.update_layout(height=500, margin = {'t': 0, 'r':0, 'b': 0, 'l':0})
-
-            st.plotly_chart(mapa, use_container_width=True)
+    with column2:
+        cities_churn = df[df['churn'] == status_churn]
+        df_cities_churn = cities_churn.loc[:,['city', 'churn']].groupby(['city']).count().sort_values(['churn'], ascending = False).reset_index().head(5)
+        figure_cities = px.bar(df_cities_churn, x = 'city', y = 'churn', color = 'city', auto_text = '.2s', title = 'City')
+        st.plotly_chart(figure_cities, use_container_width= True)
 
 # statistic info ================================================================================================================================
 
