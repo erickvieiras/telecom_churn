@@ -579,8 +579,8 @@ with tab4:
         st.plotly_chart(figure_cities, use_container_width= True)
 
     Internet_cities_churn = df[df['churn'] == 'Yes']
-    df_Internet_cities_churn = Internet_cities_churn.loc[:,['city', 'internet_type', 'churn']].groupby(['internet_type', 'city']).count().sort_values(['churn'], ascending = False).reset_index().head(5)
-    figure_Internet_cities_churn = px.bar(df_Internet_cities_churn, x = 'internet_type', y = 'churn', color = 'city', text_auto = '.2s', title = 'Top 5 cities with the highest Churn Rate')
+    df_Internet_cities_churn = Internet_cities_churn.loc[:,['city', 'internet_type', 'churn']].groupby(['internet_type', 'city']).count().sort_values(['churn'], ascending = False).reset_index()
+    figure_Internet_cities_churn = px.bar(df_Internet_cities_churn, x = 'internet_type', y = 'churn', color = 'city', text_auto = '.2s', title = 'Highest cancellation rate by city')
     st.plotly_chart(figure_Internet_cities_churn, use_container_width= True)
 
 # statistic info ================================================================================================================================
