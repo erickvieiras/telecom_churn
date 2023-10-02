@@ -573,10 +573,15 @@ with tab4:
                 st.plotly_chart(mapa, use_container_width=True)
 
     with column2:
-        cities_churn = df[df['churn'] == status_churn]
-        df_cities_churn = cities_churn.loc[:,['city', 'churn', 'internet_type']].groupby(['city', 'internet_type']).count().sort_values(['churn'], ascending = False).reset_index().head(5)
+        cities_churn = df[df['churn'] == 'Yes']
+        df_cities_churn = cities_churn.loc[:,['city', 'churn']].groupby(['city', 'internet_type']).count().sort_values(['churn'], ascending = False).reset_index().head(5)
         figure_cities = px.bar(df_cities_churn, x = 'city', y = 'churn', color = 'city', text_auto = '.2s', title = 'Top 5 cities with the highest Churn Rate')
         st.plotly_chart(figure_cities, use_container_width= True)
+
+    Internet_cities_churn = df[df['churn'] == 'Yes']
+    df_Internet_cities_churn = Internet_cities_churn.loc[:,['city', 'internet_type', 'churn']].groupby(['internet_type']).count().sort_values(['churn'], ascending = False).reset_index().head(5)
+    figure_Internet_cities_churn = px.bar(df_Internet_cities_churn, x = 'city', y = 'churn', color = 'city', text_auto = '.2s', title = 'Top 5 cities with the highest Churn Rate')
+    st.plotly_chart(figure_Internet_cities_churn, use_container_width= True)
 
 # statistic info ================================================================================================================================
 
