@@ -72,9 +72,8 @@ with tab1:
     st.markdown(df['churn'].dtypes)
     df_teste = df.copy()
     df_teste = df[(df['churn'] == 'Yes')]
-    df_teste['monthly_charge'] = df_teste['monthly_charge'].astype(float)
-    df_mean = df_teste[['monthly_charge', 'internet_type']].groupby('internet_type').agg({'monthly_charge': 'mean'}).reset_index()
-    st.dataframe(df_mean)
+    df_teste[['monthly_charge', 'internet_type']].groupby('internet_type').mean().reset_index()
+    st.dataframe(df_teste)
         
     with st.expander('Dataset Information'):
         st.dataframe(df)
