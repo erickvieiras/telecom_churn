@@ -7,6 +7,7 @@ import data_preprocessing as dp
 import streamlit as st
 import plotly.graph_objects as go
 import pickle
+from PIL import Image
 
 # Page config and load data ===================================================================================================================
 st.set_page_config(layout="wide")
@@ -30,7 +31,8 @@ def prediction(internet_type, contract, dependents, phone_service, internet_serv
     return prediction
 
 # Interactive filters sidebar ==================================================================================================================
-
+image = Image.open('img/logo.png')
+st.image(image)
 st.sidebar.markdown('# Customer Analysis Indicators')
 st.sidebar.divider()
 status_churn       = st.sidebar.radio('Customer with an diseabled contract:', ('Yes', 'No'))
