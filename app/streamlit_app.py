@@ -38,20 +38,6 @@ st.sidebar.divider()
 status_churn       = st.sidebar.radio('Customer with an diseabled contract:', ('Yes', 'No'))
 type_service       = st.sidebar.radio('Type Service:', ('Internet and Phone', 'Only Internet', 'Only Phone'))
 dependents         = st.sidebar.radio('Include Dependets: ', ('Yes', 'No', 'All'))
-
-def convert_df(dataset):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
-
-csv = convert_df(df)
-
-st.sidebar.download_button(
-    label="Download File",
-    data=csv,
-    file_name='Customer Analysis Indicators.csv',
-    mime='text/csv',
-)
-
 st.sidebar.divider()
 st.sidebar.markdown("Powered By Erick Vieira")
 
@@ -71,7 +57,20 @@ with tab1:
     st.markdown("3 - Movie, TV and Music Streaming Services.")
     st.markdown("4 - Device protection service.")
     st.markdown("5 - Online Storage and Backup.")
-    st.markdown(df['churn'].dtypes)      
+    
+    def convert_df(dataset):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+        return df.to_csv().encode('utf-8')
+
+    csv = convert_df(df)
+
+    st.download_button(
+        label="Download CSV Project File",
+        data=csv,
+        file_name='Customer Analysis Indicators.csv',
+        mime='text/csv',
+    )
+
     with st.expander('Dataset Information'):
         st.dataframe(df)
 
