@@ -583,8 +583,6 @@ with tab4:
         df_cities_churn = cities_churn.loc[:,['city', 'churn']].groupby(['city']).count().sort_values(['churn'], ascending = False).reset_index().head(5)
         figure_cities = px.bar(df_cities_churn, x = 'city', y = 'churn', color = 'city', text_auto = '.2s', title = text_title)
         st.plotly_chart(figure_cities, use_container_width= True)
-        with st.expander('More Info'):
-            st.dataframe(figure_cities)
 
 # statistic info ================================================================================================================================
 
