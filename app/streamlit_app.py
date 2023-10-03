@@ -32,7 +32,7 @@ def prediction(internet_type, contract, dependents, phone_service, internet_serv
 
 # Interactive filters sidebar ==================================================================================================================
 image = Image.open('img/logo.png')
-st.image(image)
+st.sidebar.image(image)
 st.sidebar.markdown('# Customer Analysis Indicators')
 st.sidebar.divider()
 status_churn       = st.sidebar.radio('Customer with an diseabled contract:', ('Yes', 'No'))
