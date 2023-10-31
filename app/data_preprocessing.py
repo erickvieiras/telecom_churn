@@ -29,6 +29,7 @@ def data_cleaning(data):
     data['streaming_movies']         = data['streaming_movies'].fillna('No')
     data['streaming_music']          = data['streaming_music'].fillna('No')
     data['unlimited_data']           = data['unlimited_data'].fillna('Yes')
+    data['offer']                    = data['offer'].fillna('Offer B')
 
     # Drop the columns that have 73% of NA data
     data.drop(['churn_category', 'churn_reason'], axis = 1, inplace = True)
