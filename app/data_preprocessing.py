@@ -64,3 +64,5 @@ def data_cleaning(data):
     data['product_type'] = 'Internet and Phone'
     data.loc[(data['internet_service'] == 'Yes') & (data['phone_service'] == 'No'), 'product_type'] = 'Only Internet'
     data.loc[(data['internet_service'] == 'No') & (data['phone_service'] == 'Yes'), 'product_type'] = 'Only Phone'
+
+    return data
