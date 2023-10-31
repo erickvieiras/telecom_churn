@@ -15,7 +15,7 @@ df = pd.read_csv('dataset/telecom_customer_churn.csv')
 df_model = pd.read_csv('model/customers_churn_preparated.csv')
 
 # Data Cleaning================================================================================================================================
-dp.data_cleaning(df)
+df = dp.data_cleaning(df)
 
 # Load Pickle model============================================================================================================================
 
